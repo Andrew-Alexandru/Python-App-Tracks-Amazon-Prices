@@ -6,3 +6,7 @@ URL = 'https://www.amazon.de/Sony-Digitalkamera-Touch-Display-Vollformatsensor-K
 headers = {"User-Agent":'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101 Firefox/68.0'}
 
 page = requests.get(URL, headers=headers)
+
+soup = BeautifulSoup(page.content, 'html.parser')
+
+print(soup.prettify())
