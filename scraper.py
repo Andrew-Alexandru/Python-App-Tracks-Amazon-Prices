@@ -20,6 +20,9 @@ def check_price():
     print(converted_price)
     print(title.strip())
 
+    if(converted_price > 1.700):
+        send_mail()
+
 def send_mail():
     server =  smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
@@ -27,4 +30,14 @@ def send_mail():
     server.ehlo()
 
     server.login('andrei.cimpoes@student.usv.ro', 'zgrctjcgldgzgsnh')
-    
+    subject = 'Price fell down'
+    body = 'Check the Amazon link https://www.amazon.de/Sony-Digitalkamera-Touch-Display-Vollformatsensor-Kartenslots/dp/B07B4R8QGM/ref=sr_1_5?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=sony+a7&qid=1566296312&s=gateway&sr=8-5'
+    msg = f"Subject: {subject}\n\n {body}"
+    server.sendmail('andrei.cimpoes@student.usv.ro',
+                    'cimpoes.andrei.alexandru@gmail.com',
+                    msg)
+    print('The email has been sent')
+    server.quit
+
+
+check_price()
